@@ -1,5 +1,6 @@
 package com.brodygaudel.securityservice.dto;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
@@ -11,5 +12,5 @@ import java.util.Set;
  * @author Brody Gaudel MOUNANGA BOUKA
  * @version 1.0
  */
-public record UserResponseDTO(String id, String username, String email, Boolean enabled, Set<String> roles) {
+public record UserResponseDTO(String id, String username, String email, Boolean enabled, Set<String> roles, LocalDateTime creation, LocalDateTime lastUpdate) {
 }

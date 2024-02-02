@@ -32,6 +32,7 @@ public class MappersImpl implements Mappers {
     @Override
     public User fromUserRequestDTO(@NotNull UserRequestDTO userRequestDTO) {
         return User.builder()
+                .id(userRequestDTO.id())
                 .username(userRequestDTO.username())
                 .email(userRequestDTO.email())
                 .password(userRequestDTO.password())
@@ -51,7 +52,9 @@ public class MappersImpl implements Mappers {
                 user.getUsername(),
                 user.getEmail(),
                 user.getEnabled(),
-                rolesToStrings(user.getRoles())
+                rolesToStrings(user.getRoles()),
+                user.getCreation(),
+                user.getLastUpdate()
         );
     }
 
@@ -62,8 +65,8 @@ public class MappersImpl implements Mappers {
      * @return The corresponding list of UserResponseDTOs.
      */
     @Override
-    public List<UserResponseDTO> fromListOfUsers(List<User> users) {
-        return null;
+    public List<UserResponseDTO> fromListOfUsers(@NotNull List<User> users) {
+        return users.stream().map(this::fromUser).toList();
     }
 
     /**
