@@ -6,6 +6,7 @@ import com.brodygaudel.securityservice.entity.Role;
 import com.brodygaudel.securityservice.entity.User;
 import com.brodygaudel.securityservice.util.Mappers;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
  * @author Brody Gaudel MOUNANGA BOUKA
  * @version 1.0
  */
+@Component
 public class MappersImpl implements Mappers {
     /**
      * Converts a UserRequestDTO to a User entity.
