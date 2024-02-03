@@ -51,17 +51,16 @@ public class SecurityConfiguration {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .cors(cors -> cors.configurationSource(request -> corsConfiguration()))
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/list/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN, StaticParameters.USER)
-                        .requestMatchers("/get/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN, StaticParameters.USER)
-                        .requestMatchers("/find/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN, StaticParameters.USER)
-                        .requestMatchers("/all").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN, StaticParameters.USER)
-                        .requestMatchers("/save/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN)
-                        .requestMatchers("/update/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN)
-                        .requestMatchers("/add-role/**").hasAuthority(StaticParameters.SUPER_ADMIN)
-                        .requestMatchers("/remove-role/**").hasAuthority(StaticParameters.SUPER_ADMIN)
-                        .requestMatchers("/delete/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN)
-                        .requestMatchers("/clear/**").hasAuthority(StaticParameters.SUPER_ADMIN)
-                        .requestMatchers("/login").permitAll())
+                        .requestMatchers("/users/list/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN, StaticParameters.USER)
+                        .requestMatchers("/users/get/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN, StaticParameters.USER)
+                        .requestMatchers("/users/all").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN, StaticParameters.USER)
+                        .requestMatchers("/users/create/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN)
+                        .requestMatchers("/users/update/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN, StaticParameters.ADMIN)
+                        .requestMatchers("/users/add-role/**").hasAuthority(StaticParameters.SUPER_ADMIN)
+                        .requestMatchers("/users/remove-role/**").hasAuthority(StaticParameters.SUPER_ADMIN)
+                        .requestMatchers("/users/delete/**").hasAnyAuthority(StaticParameters.SUPER_ADMIN)
+                        .requestMatchers("/users/delete-all/**").hasAuthority(StaticParameters.SUPER_ADMIN)
+                        .requestMatchers("/authentication/login").permitAll())
                 .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

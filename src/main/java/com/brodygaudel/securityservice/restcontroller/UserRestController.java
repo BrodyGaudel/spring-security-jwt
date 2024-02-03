@@ -46,7 +46,7 @@ public class UserRestController {
      * @throws ItemAlreadyExistException If the user with the specified information already exists.
      */
     @PostMapping("/create")
-    public UserResponseDTO save(UserRequestDTO userRequestDTO) throws ItemAlreadyExistException{
+    public UserResponseDTO save(@RequestBody UserRequestDTO userRequestDTO) throws ItemAlreadyExistException{
         return userService.save(userRequestDTO);
     }
 
