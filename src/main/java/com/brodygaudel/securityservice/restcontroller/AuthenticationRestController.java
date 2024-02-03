@@ -3,10 +3,10 @@ package com.brodygaudel.securityservice.restcontroller;
 import com.brodygaudel.securityservice.dto.LoginRequestDTO;
 import com.brodygaudel.securityservice.dto.LoginResponseDTO;
 import com.brodygaudel.securityservice.service.AuthenticationService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Rest controller for handling authentication-related HTTP requests.
@@ -42,6 +42,17 @@ public class AuthenticationRestController {
     @PostMapping("/login")
     public LoginResponseDTO login(@RequestBody LoginRequestDTO loginRequestDTO){
         return authenticationService.login(loginRequestDTO);
+    }
+
+    /**
+     * Exception handler for handling exceptions thrown within this controller.
+     *
+     * @param exception The exception to handle.
+     * @return A ResponseEntity with an error message and HTTP status code.
+     */
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> exceptionHandler(@NotNull Exception exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 
