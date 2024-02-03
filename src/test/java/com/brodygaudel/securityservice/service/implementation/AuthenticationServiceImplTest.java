@@ -20,6 +20,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Integration tests for the {@link AuthenticationServiceImpl} class.
+ * These tests validate the behavior of authentication functionality.
+ *
+ * @since 2024
+ * @author Brody Gaudel MOUNANGA BOUKA
+ * @version 1.0
+ */
 @SpringBootTest
 class AuthenticationServiceImplTest {
 
@@ -44,6 +52,10 @@ class AuthenticationServiceImplTest {
         );
     }
 
+    /**
+     * Test the login functionality by providing a username.
+     * This test ensures proper authentication and response generation.
+     */
     @Test
     void testLoginByUsername() {
         // Arrange
@@ -68,6 +80,10 @@ class AuthenticationServiceImplTest {
         verify(authenticationManager, times(1)).authenticate(any(UsernamePasswordAuthenticationToken.class));
     }
 
+    /**
+     * Test the login functionality by providing an email address.
+     * This test ensures proper authentication and response generation.
+     */
     @Test
     void testLoginByEmail() {
         // Arrange
